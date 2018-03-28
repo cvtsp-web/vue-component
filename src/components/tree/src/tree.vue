@@ -77,7 +77,7 @@ export default {
     },
     computed: {
         _tree() {
-            return this.$refs['tree'].$el;
+            return this.$refs['tree'];
         },
         _ztree() {
             return this.$refs['ztree'];
@@ -112,7 +112,7 @@ export default {
                 zTree.cancelSelectedNode();
                 zTree.selectNode(treeNode);
                 this.rightPosition = Object.assign(this.rightPosition, {
-                    top: (this._tree.querySelector('.el-scrollbar__wrap').scrollTop + clientY - top) + 'px',
+                    top: (this._tree.scrollTop + clientY - top) + 'px',
                     left: (clientX - left) + 'px'
                 });
 

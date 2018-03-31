@@ -1,9 +1,9 @@
 {
   "name": "cvtsp-components",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "cvtsp public components for web",
   "author": "wukangjun",
-  "main": "dist/cvtsp.min.js",
+  "main": "lib/cvtsp.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/cvtsp-web/vue-component.git"
@@ -13,8 +13,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "clear": "rimraf dist",
-    "component:dll": "cross-env VERSION=0.1.1 node build/component.conf.js",
+    "clear": "rimraf lib",
+    "component:dll": "cross-env VERSION=0.1.2 node build/component.conf.js",
     "router:dll": "node build/router.conf.js",
     "build:file": "npm run component:dll & npm run router:dll",
     "start": "npm run build:file && npm run dev",

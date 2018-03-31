@@ -33,7 +33,7 @@ const install = function(Vue, options={}) {
 };
 
 export default {
-version: '1.0.1',
+version: '0.1.2',
 install,
 CvCheckboxLists,
 CvDropdownTree,

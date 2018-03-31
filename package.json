@@ -1,14 +1,24 @@
 {
   "name": "cvtsp-components",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "cvtsp public components for web",
   "author": "wukangjun",
-  "private": true,
+  "main": "dist/cvtsp.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cvtsp-web/vue-component.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cvtsp-web/vue-component/issues"
+  },
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "build:file": "cross-env VERSION=1.0.1 node build/component.conf.js",
+    "clear": "rimraf dist",
+    "component:dll": "cross-env VERSION=0.1.1 node build/component.conf.js",
+    "router:dll": "node build/router.conf.js",
+    "build:file": "npm run component:dll & npm run router:dll",
     "start": "npm run build:file && npm run dev",
-    "build": "npm run build:file && node build/build.js"
+    "build": "cnpm run clear && npm run build:file && node build/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -45,12 +55,13 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
-    "rimraf": "^2.6.0",
+    "rimraf": "^2.6.2",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
+    "vue-router": "^3.0.1",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",

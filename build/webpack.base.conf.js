@@ -13,7 +13,7 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './test/main.js'
+    cvtsp: process.env.NODE_ENV === 'production' ? './src/index.js' : './test/main.js'
   },
   output: {
     path: config.build.assetsRoot,

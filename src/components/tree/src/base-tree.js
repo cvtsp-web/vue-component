@@ -1,4 +1,4 @@
-import '../assets/css/awesomeStyle/awesome.css'
+import '../assets/css/awesome.scss'
 import '../assets/jquery-1.4.4.min.js'
 import '../assets/jquery.ztree.core'
 import '../assets/jquery.ztree.excheck'
@@ -36,6 +36,7 @@ export default class BaseTree {
 
         $.fn.zTree.init(this.el, this.treeConfig(this.isCheck), data);
         this.zTree = $.fn.zTree.getZTreeObj(this.treeId);
+        this.treeLoaded(data);
     }
 
     /**
@@ -45,6 +46,7 @@ export default class BaseTree {
     setInitialTree(data) {
         $.fn.zTree.init(this.el, this.treeConfig(this.isCheck), data);
         this.zTree = $.fn.zTree.getZTreeObj(this.treeId);
+        this.treeLoaded(data);
     }
 
     /**

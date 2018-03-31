@@ -1,0 +1,399 @@
+/*-------------------------------------
+cv-ztree Style using fontawesome instead of images
+
+version:    1.1
+author:     Mike King
+email:      mikkelking @ hotmail . com
+website:    http://code.google.com/p/jquerytree/
+
+-------------------------------------*/
+/* Definitions ----------------------*/
+/* End of Definitions ---------------*/
+/* Imports  -------------------------*/
+/* End of Imports  ------------------*/
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot?t=1522231559490'); /* IE9*/
+  src: url('../fonts/iconfont.eot?t=1522231559490#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,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') format('woff'),
+  url('../fonts/iconfont.ttf?t=1522231559490') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg?t=1522231559490#iconfont') format('svg'); /* iOS 4.1- */
+}
+$color: #606266;
+$currentColor: red;
+.cv-ztree * {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+}
+.cv-ztree {
+  margin: 0;
+  padding: 5px;
+}
+.cv-ztree li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  line-height: 25px;
+  text-align: left;
+  white-space: nowrap;
+  outline: 0;
+}
+.cv-ztree li ul {
+  margin: 0px;
+  padding: 0 0 0 18px;
+}
+.cv-ztree li a {
+  padding-right: 3px;
+  margin: 0;
+  cursor: pointer;
+  height: 17px;
+  background-color: transparent;
+  text-decoration: none;
+  vertical-align: top;
+  display: inline-block;
+  color: #606266;
+}
+.cv-ztree li a input.rename {
+  height: 14px;
+  width: 80px;
+  padding: 0;
+  margin: 0;
+  color: #af0000;
+  background-color: #ffffff;
+  font-size: 12px;
+  border: 1px #585956 solid;
+  *border: 0px;
+}
+.cv-ztree li a.curSelectedNode {
+  padding-top: 0px;
+  height: 17px;
+  opacity: 0.8;
+  color: $currentColor;
+}
+.cv-ztree li a.curSelectedNode_Edit {
+  padding-top: 0px;
+  background-color: transparent;
+  color: #ffff00;
+  height: 17px;
+  border: 1px #666 solid;
+  opacity: 0.8;
+}
+.cv-ztree li a.tmpTargetNode_inner {
+  padding-top: 0px;
+  background-color: #aaa;
+  color: #ffff00;
+  height: 17px;
+  border: 1px #666 solid;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.cv-ztree li span {
+  line-height: 20px;
+  padding-left: 6px;
+  margin-right: 2px;
+  background-color: transparent;
+}
+.cv-ztree li span.button {
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  width: 15px;
+  height: 17px;
+  display: inline-block;
+  vertical-align: top;
+  border: 0px solid;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+.cv-ztree li span.button::before {
+  font-family: FontAwesome;
+  padding-top: 10px;
+}
+.cv-ztree li span.button.noline_close:before {
+  content: '\e790';
+  font-family:"iconfont" !important;
+  display: inline-block;
+}
+.cv-ztree li span.button.noline_open:before {
+  content: '\e791';
+  font-family:"iconfont" !important;
+  display: inline-block;
+}
+.cv-ztree li span.button.chk {
+  margin: 0px;
+  cursor: auto;
+  width: 12px;
+  display: inline-block;
+  padding-top: 10px;
+  padding-left: 2px;
+}
+/* 没有勾选的状态 */
+.cv-ztree li span.button.chk.checkbox_false_full::before {
+  content: "\e638";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_full_focus::before {
+  content: "\e638";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_part::before {
+  content: "\e665";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_part_focus::before {
+  content: "\e665";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_false_disable::before {
+  content: "\f096";
+  color: #808080;
+}
+.cv-ztree li span.button.chk.checkbox_true_full::before {
+  content: "\e65a";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_true_full_focus::before {
+  content: "\e65a";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_true_part::before {
+  content: "\ebce";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_true_part_focus::before {
+  content: "\ebce";
+  color: $color;
+  font-family:"iconfont" !important;
+}
+.cv-ztree li span.button.chk.checkbox_true_disable::before {
+  content: "\f046";
+  color: #808080;
+}
+.cv-ztree li span.button.chk.radio_false_full::before {
+  content: "\f10c";
+}
+.cv-ztree li span.button.chk.radio_false_full_focus::before {
+  content: "\f10c";
+  color: #ffff00;
+}
+.cv-ztree li span.button.chk.radio_false_part::before {
+  content: "\f10c";
+  color: #aaaaaa;
+}
+.cv-ztree li span.button.chk.radio_false_part_focus::before {
+  content: "\f10c";
+  color: #ffff00;
+}
+.cv-ztree li span.button.chk.radio_false_disable::before {
+  content: "\f1db";
+  color: #808080;
+}
+.cv-ztree li span.button.chk.radio_true_full::before {
+  content: "\f192";
+}
+.cv-ztree li span.button.chk.radio_true_full_focus::before {
+  content: "\f192";
+  color: #ffff00;
+}
+.cv-ztree li span.button.chk.radio_true_part::before {
+  content: "\f192";
+  color: #aaaaaa;
+}
+.cv-ztree li span.button.chk.radio_true_part_focus::before {
+  content: "\f192";
+  color: #aaaaaa;
+}
+.cv-ztree li span.button.chk.radio_true_disable::before {
+  content: "\f1db";
+  color: #808080;
+}
+.cv-ztree li span.button.switch {
+  width: 15px;
+  height: 17px;
+}
+.cv-ztree li span.button.root_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.root_close::before {
+  content: "\f115";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.roots_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.roots_close::before {
+  content: "\f054";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.center_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.center_close::before {
+  content: "\f054";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.bottom_open::before {
+  content: "\f078";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.bottom_close::before {
+  content: "\f054";
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+}
+.cv-ztree li span.button.root_docu {
+  background: none;
+}
+.cv-ztree li span.button.roots_docu::before {
+  content: "\f022";
+  padding-left: 2px;
+  display: inline-block;
+  color: #ffffff;
+}
+.cv-ztree li span.button.center_docu::before {
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+  color: #ffffff;
+}
+.cv-ztree li span.button.bottom_docu::before {
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+  color: #ffffff;
+}
+.cv-ztree li span.button.noline_docu {
+  background: none;
+}
+.cv-ztree li span.button.ico_open::before {
+  content: "\e768";
+  font-family:"iconfont" !important;
+  padding-top: 10px;
+  padding-left: 4px;
+  display: inline-block;
+}
+.cv-ztree li span.button.ico_close::before {
+  content: "\f001c";
+  font-family:"iconfont" !important;
+  padding-top: 10px;
+  padding-left: 4px;
+  display: inline-block;
+}
+.cv-ztree li span.button.ico_docu::before {
+  content: "\f022";
+  font-family: FontAwesome;
+  padding-top: 10px;
+  padding-left: 2px;
+  display: inline-block;
+  color: #ffffff;
+}
+.cv-ztree li span.button.edit {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+  padding-top: 10px;
+}
+.cv-ztree li span.button.edit::before {
+  content: "\f044";
+  font-family: FontAwesome;
+}
+.cv-ztree li span.button.remove {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+  padding-top: 10px;
+}
+.cv-ztree li span.button.remove::before {
+  content: "\f1f8";
+  font-family: FontAwesome;
+}
+.cv-ztree li span.button.add {
+  margin-left: 4px;
+  margin-right: -1px;
+  vertical-align: top;
+  *vertical-align: middle;
+  padding-top: 10px;
+}
+.cv-ztree li span.button.add::before {
+  content: "\f067";
+  font-family: FontAwesome;
+}
+.cv-ztree li span.button.ico_loading {
+  margin: 10px 0 0 4px;
+  *vertical-align: middle;
+}
+.cv-ztree li span.button.ico_loading::before {
+  content: "\e627";
+  font-family:"iconfont" !important;
+}
+ul.tmpTargetzTree {
+  background-color: #FFE6B0;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+span.tmpzTreeMove_arrow {
+  width: 16px;
+  height: 17px;
+  display: inline-block;
+  padding: 0;
+  margin: 2px 0 0 1px;
+  border: 0 none;
+  position: absolute;
+  background-color: transparent;
+  background-attachment: scroll;
+}
+span.tmpzTreeMove_arrow::before {
+  content: "\f04b";
+  font-family: FontAwesome;
+  color: #ffff00;
+}
+ul.cv-ztree.zTreeDragUL {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background-color: #cfcfcf;
+  border: 1px #ffff00 dotted;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.ztreeMask {
+  z-index: 10000;
+  background-color: #cfcfcf;
+  opacity: 0.0;
+  filter: alpha(opacity=0);
+  position: absolute;
+}

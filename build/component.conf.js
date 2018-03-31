@@ -5,13 +5,14 @@ var endLine = require('os').EOL;
 
 var ROOT = path.resolve(__dirname, '../src/index.js');
 var COMPONENT_ROOT = path.resolve(__dirname, '../src/components');
-var IMPORT_TPL = `import {{name}} from \'./components/{{components}}/index.js\';`;
-var INSTALL_TPL = '{{name}}';     
+var IMPORT_TPL = `import Cv{{name}} from \'./components/{{components}}/index.js\';`;
+var INSTALL_TPL = 'Cv{{name}}';     
 var MAIN_TPL = `
 /** auto(wukangjun) components */
 {{imports}}
 import config from './utils/config.js'
 import http from './utils/http.js'
+import clickOutHide from './utils/clickoutside'
 
 const components = [
 {{install}}
@@ -24,6 +25,8 @@ const install = function(Vue, options={}) {
 
     Vue.prototype.$http = http;
     Vue.prototype.$config = config;
+
+    Vue.directive('clickoutside', clickOutHide)
 };
 
 export default {
@@ -42,11 +45,11 @@ var imports = [];
 var installs = [];
 files.forEach(function(file) {
     imports.push(render(IMPORT_TPL, {
-        name: upperFirst(file),
+        name: whipptreeFilter(upperFirst(file)),
         components: file
     }));
     installs.push(render(INSTALL_TPL, {
-        name: upperFirst(file)
+        name: whipptreeFilter(upperFirst(file))
     }))
 })
 
@@ -64,5 +67,13 @@ fs.writeFileSync(ROOT, template);
  */
 function upperFirst(str) {
     return str.charAt(0).toUpperCase() + str.substring(1);
+}
+
+function whipptreeFilter(str) {
+    var results = str.replace(/(-)(\w)/g, function(math, val0, val1) {
+        return val1.toUpperCase();
+    });
+
+    return results;
 }
 

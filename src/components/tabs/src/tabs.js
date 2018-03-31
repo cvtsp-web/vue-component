@@ -1,13 +1,6 @@
 import '../style/index.scss'
-import {Tabs, TabPane, Scrollbar} from 'element-ui'
-
 export default {
     name: 'CvTabs',
-    components: {
-        ElTabs: Tabs, 
-        ElTabPane: TabPane, 
-        ElScrollbar: Scrollbar
-    },
     props: {
         titles: {
             type: [Function, Array],

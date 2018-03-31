@@ -26,6 +26,7 @@ export default
 
 			if(errorCode == 401 || errorCode == 402 || errorCode == 403) {
 				window.location.href = '/#';
+				window.location.reload();
 			} else {
 				resolve(msg.data);
 			}

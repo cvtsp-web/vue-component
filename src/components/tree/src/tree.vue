@@ -1,5 +1,5 @@
 <template>
-    <div class="cv-tree" ref="tree">
+    <div class="cv-tree" ref="tree" v-loading="treeLoading">
         <div class="cv-tree-emptytext" v-show="isEmptyText">暂无数据</div>
 
         <!-- 树的容器 -->
@@ -58,12 +58,13 @@ export default {
                 return ['id', "type=type"];
             }
         },
-        // 树的dom初始化生成回调
-        treeReady: Function
+        // 树接受数据加载完成的回调
+        treeLoaded: Function
     },
     data() {
         return {
             tree: null,
+            treeLoading: false,
             rightDropdown: false,
             rightPosition: {
                 position: 'absolute',
@@ -87,7 +88,7 @@ export default {
         data: {
             immediate: true,
             handler(val) {
-                if(val) {
+                if(Array.isArray(val) && val.length > 0) {
                     this.isEmptyText = false;
                     this.tree && this.tree.setInitialTree(val);
                 }
@@ -142,7 +143,9 @@ export default {
          * @param {String} url: api接口路径
          */
         initialTree(url) {
+            this.treeLoading = true;
             this.$http({ url }).then(mess => {
+                this.treeLoading = false;
                 const {data, flag} = mess;
                 this.isEmptyText = false;
 
@@ -249,7 +252,7 @@ export default {
                     node && zTree.checkNode(node, isChecked, true);
                 })
             }else {
-                // keys数组为空， 表示情况所有勾选
+                // keys数组为空， 表示取消所有勾选
                 zTree.checkAllNodes(false);
             }
         },
@@ -263,6 +266,38 @@ export default {
 
         getCheckedNodes(isCheck=true) {
             return this.tree.zTree.getCheckedNodes(isCheck);
+        },
+
+        /**
+         * 根据条件过滤符合的节点数组
+         * @param {String} condition: 条件
+         * @param {String} result: 筛选目标
+         * @param {Node} parentNode: 父节点
+         * @return {Array|null|Object} 有数据返回数据 否则为空
+         */
+        getNodeByParam(condition, result, parentNode) {
+            const {zTree} = this.tree;
+            return zTree.getNodeByParam.apply(this, arguments);
+        },
+
+        /**
+         * 取消选中的节点
+         * $param {treeNode} 当前选中的节点
+         */
+        cancelSelectedNode(treeNode) {
+            const {zTree} = this.tree;
+            return zTree.cancelSelectedNode(treeNode);
+        },
+
+        /**
+         * 选中需要的节点
+         * @param {Object} treeNode: 节点对象
+         * @param {Boolean} addFlag: true:表示追加选中，会出现多点同时被选中的情况 false:表示单独选中，原先被选中的节点会被取消选中状态
+         * @param {Boolean} isSilent:true: 选中节点时，不会让节点自动滚到到可视区域内;false:表示选中节点时，会让节点自动滚到到可视区域内 
+         */
+        selectNode(treeNode, addFlag=false, isSilent=false) {
+            const {zTree} = this.tree;
+            return zTree.selectNode.apply(this, arguments);   
         }
     },
     destoryed() {
@@ -311,6 +346,9 @@ export default {
                 },
                 load(treeNode, handlerName) {
                     _this.treeSuccessCallback(treeNode, handlerName);
+                },
+                treeLoaded(data) {
+                    typeof _this.treeLoaded === 'function' && _this.treeLoaded(data);
                 }
             }
         });
@@ -319,13 +357,6 @@ export default {
         if(Array.isArray(this.data) && this.data.length > 0) {
             this.tree.setInitialTree(this.data);  
         } 
-
-        // 树初始化加载完成的回调
-        var timer = setTimeout( _ => {
-            clearTimeout(timer);
-            timer = null;
-            typeof this.treeReady === 'function' && this.treeReady(this.tree);
-        })
     }
 }
 </script>
@@ -333,6 +364,7 @@ export default {
 <style lang="scss">
     .cv-tree {
        width: 100%;
+       min-height: 36px;
        .cv-tree-emptytext {
            text-align: center;
            font-size: 16px;

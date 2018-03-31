@@ -1,15 +1,24 @@
 
 /** auto(wukangjun) components */
-import Flyweight from './components/flyweight/index.js';
-import Tabs from './components/tabs/index.js';
-import Tree from './components/tree/index.js';
+import CvCheckboxLists from './components/checkbox-lists/index.js';
+import CvDropdownTree from './components/dropdown-tree/index.js';
+import CvFlyweight from './components/flyweight/index.js';
+import CvGrid from './components/grid/index.js';
+import CvRadioLists from './components/radio-lists/index.js';
+import CvTabs from './components/tabs/index.js';
+import CvTree from './components/tree/index.js';
 import config from './utils/config.js'
 import http from './utils/http.js'
+import clickOutHide from './utils/clickoutside'
 
 const components = [
-Flyweight,
-Tabs,
-Tree
+CvCheckboxLists,
+CvDropdownTree,
+CvFlyweight,
+CvGrid,
+CvRadioLists,
+CvTabs,
+CvTree
 ];
 
 const install = function(Vue, options={}) {
@@ -19,12 +28,18 @@ const install = function(Vue, options={}) {
 
     Vue.prototype.$http = http;
     Vue.prototype.$config = config;
+
+    Vue.directive('clickoutside', clickOutHide)
 };
 
 export default {
 version: '1.0.1',
 install,
-Flyweight,
-Tabs,
-Tree
+CvCheckboxLists,
+CvDropdownTree,
+CvFlyweight,
+CvGrid,
+CvRadioLists,
+CvTabs,
+CvTree
 };
